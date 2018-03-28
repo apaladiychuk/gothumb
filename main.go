@@ -1,12 +1,11 @@
 package main
 
 import (
-	 "github.com/apaladiychuk/store"
+ "github.com/apaladiychuk/store"
 	"os"
 	"io/ioutil"
 	"log"
 	"fmt"
-	"github.com/astaxie/beego/logs"
 	"image/jpeg"
 	"github.com/nfnt/resize"
 	"sync"
@@ -77,14 +76,14 @@ func processImage( wg *sync.WaitGroup , c *chan string  , fileName string  ){
 	}()
 
 	if err != nil {
-		logs.Error(err.Error())
+		fmt.Println(err.Error())
 		return
 	}
 	defer file.Close()
 	// decode jpeg into image.Image
 	img, err := jpeg.Decode(file)
 	if err != nil {
-		logs.Error(err.Error())
+		fmt.Println(err.Error())
 		return
 	}
 	size := img.Bounds().Size()
@@ -102,7 +101,7 @@ func processImage( wg *sync.WaitGroup , c *chan string  , fileName string  ){
 	m := resize.Thumbnail(uint( float32(size.X) / koef )  , uint( float32(size.Y ) / koef ) , img, resize.Lanczos3)
 	out, err := os.Create(destFolder + fileName )
 	if err != nil {
-		logs.Error(err.Error())
+		fmt.Println(err.Error())
 	}
 	defer out.Close()
 
