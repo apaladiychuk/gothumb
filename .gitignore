@@ -1,0 +1,10 @@
+/*.tmp
+/.idea
+/*.exe
+/*.iml
+/downloads/*
+/routers/commentsRouter_controllers.go
+/swagger
+/conf/local.conf
+swagger.zip
+webapp.exe~
